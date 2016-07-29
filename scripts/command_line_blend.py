@@ -6,7 +6,7 @@ import sys
 import os
 
 #number of frames per timestep
-frame_count = 1
+frame_count = 0
 
 #initialize counter
 i=0
@@ -15,16 +15,18 @@ i=0
 color_change = 0.2/(len(sys.argv[5:]))
 
 #print('the last argument is:'+str(sys.argv[5:]))
+files = sys.argv[5:]
 
-for fileName in sys.argv[5:len(sys.argv[5:])/3]:
+for fileName in files[:int(len(files)/3)]:
     bpy.data.scenes["Scene"].frame_start = i
     bpy.data.scenes["Scene"].frame_end = i+frame_count
-    text_name = '//'+str(fileName)
-    bpy.data.textures["Texture"].voxel_data.filepath = str(text_name)
+    text_name = str(fileName)
+    #print(text_name)
+    bpy.data.textures["dark_matter"].voxel_data.filepath = str(text_name)
 
 
-    for j in reversed(range(0,6)):
-        bpy.data.textures["Texture"].color_ramp.elements[j].position += color_change
+    #for j in reversed(range(0,6)):
+    #    bpy.data.textures["Texture"].color_ramp.elements[j].position += color_change
     #print(bpy.data.textures["Texture"].voxel_data.filepath)
     #print(text_name)
 
