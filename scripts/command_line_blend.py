@@ -1,4 +1,9 @@
 #Blender command line scripting attempt
+#
+#--- Changelog ---
+#-----------------
+# 8/10/2016 - adjusted script to work in windows environment
+#--------------------------------------
 
 import bpy
 import numpy as np
@@ -9,20 +14,24 @@ import os
 frame_count = 0
 
 #initialize counter
-i=0
+i=301
 
 #color change
 color_change = 0.2/(len(sys.argv[5:]))
 
-#print('the last argument is:'+str(sys.argv[5:]))
+print('the last argument is:'+str(sys.argv[5:]))
 files = sys.argv[5:]
+print(type(files))
+file_list = os.listdir(files[0])
 
-for fileName in files[:int(len(files)/3)]:
+for fileName in file_list[:int(len(file_list)/3.)]:
+    print('im in a loop')
     bpy.data.scenes["Scene"].frame_start = i
     bpy.data.scenes["Scene"].frame_end = i+frame_count
     text_name = str(fileName)
-    #print(text_name)
-    bpy.data.textures["dark_matter"].voxel_data.filepath = str(text_name)
+    print(text_name)
+    print('hrmpf')
+    bpy.data.textures["dark_matter"].voxel_data.filepath = str(files[0]+text_name)
 
 
     #for j in reversed(range(0,6)):
