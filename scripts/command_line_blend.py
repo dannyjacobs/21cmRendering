@@ -17,10 +17,10 @@ frame_count = 0
 i=301
 
 #color change
-color_change = 0.2/(len(sys.argv[5:]))
+color_change = 0.2/(len(sys.argv[-1:]))
 
-print('the last argument is:'+str(sys.argv[5:]))
-files = sys.argv[5:]
+print('the last argument is:'+str(sys.argv[-1:]))
+files = sys.argv[-1:]
 print(type(files))
 file_list = os.listdir(files[0])
 
@@ -39,6 +39,6 @@ for fileName in file_list[:int(len(file_list)/3.)]:
     #print(bpy.data.textures["Texture"].voxel_data.filepath)
     #print(text_name)
 
-    bpy.ops.render.render(animation=True)
+    #bpy.ops.render.render(animation=True)
 
     i=i+frame_count+1
