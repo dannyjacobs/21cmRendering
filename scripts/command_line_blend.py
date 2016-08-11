@@ -6,7 +6,7 @@
 #--------------------------------------
 
 import bpy
-import numpy as np
+#import numpy as np
 import sys
 import os
 
@@ -36,7 +36,8 @@ for subdir, dir, files in os.walk(files[0]):
             bpy.data.textures["dark_matter"].voxel_data.filepath = filepath
 
             #--- Start animating ---#
-            #bpy.ops.render.render(animation=True)
+            bpy.ops.render.render(animation=True)
+            i = i+frame_count+1
 
 #for fileName in file_list[:int(len(file_list)/3.)]:
 #    print('im in a loop')
