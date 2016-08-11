@@ -22,16 +22,30 @@ color_change = 0.2/(len(sys.argv[-1:]))
 print('the last argument is:'+str(sys.argv[-1:]))
 files = sys.argv[-1:]
 print(type(files))
-file_list = os.listdir(files[0])
+#file_list = os.listdir(files[0])
 
-for fileName in file_list[:int(len(file_list)/3.)]:
-    print('im in a loop')
-    bpy.data.scenes["Scene"].frame_start = i
-    bpy.data.scenes["Scene"].frame_end = i+frame_count
-    text_name = str(fileName)
-    print(text_name)
-    print('hrmpf')
-    bpy.data.textures["dark_matter"].voxel_data.filepath = str(files[0]+text_name)
+for subdir, dir, files in os.walk(files[0]):
+    for file in files:
+        filepath = subdir + os.sep + file
+        if filepath.endswith(".raw"):
+            print('im in a loop')
+            bpy.data.scenes["Scene"].frame_start = i
+            bpy.data.scenes["Scene"].frame_end = i+frame_count
+            print(filepath)
+            print('hrmpf')
+            bpy.data.textures["dark_matter"].voxel_data.filepath = filepath
+
+            #--- Start animating ---#
+            #bpy.ops.render.render(animation=True)
+
+#for fileName in file_list[:int(len(file_list)/3.)]:
+#    print('im in a loop')
+#    bpy.data.scenes["Scene"].frame_start = i
+#    bpy.data.scenes["Scene"].frame_end = i+frame_count
+#    text_name = str(fileName)
+#    print(text_name)
+#    print('hrmpf')
+#    bpy.data.textures["dark_matter"].voxel_data.filepath = str(files[0]+text_name)
 
 
     #for j in reversed(range(0,6)):
