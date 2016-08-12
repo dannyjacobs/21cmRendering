@@ -9,13 +9,16 @@ import bpy
 #import numpy as np
 import sys
 import os
+import glob
 
 #number of frames per timestep
 frame_count = 0
 
+
 #initialize counter
 i=301
 begin = 0 #frame to start animation on
+raw_file_counter = 0
 
 #color change
 color_change = 0.2/(len(sys.argv[-1:]))
@@ -29,25 +32,32 @@ for subdir, dir, files in os.walk(files[0]):
     for file in files:
         filepath = subdir + os.sep + file
         if filepath.endswith(".raw"):
-            print('im in a loop')
+            #print('im in a loop')
 
             #--- Render beginning zoom in frames w/ just the first .raw
             if (begin < i):
                 bpy.data.scenes["Scene"].frame_start = begin
                 bpy.data.scenes["Scene"].frame_end = i
                 bpy.data.textures["dark_matter"].voxel_data.filepath = filepath
-                bpy.ops.render.render(animation=True)
+                #bpy.ops.render.render(animation=True)
                 begin = i
-            #--- Render time evolution
-            bpy.data.scenes["Scene"].frame_start = i
-            bpy.data.scenes["Scene"].frame_end = i+frame_count
-            #print(filepath)
-            #print('hrmpf')
-            bpy.data.textures["dark_matter"].voxel_data.filepath = filepath
+                print(begin)
 
-            #--- Start animating ---#
-            bpy.ops.render.render(animation=True)
-            i = i+frame_count+1
+            animate_length = len(glob.glob(subdir+os.sep+'*'))
+            print('animate length is {:}'.format(animate_length/3.))
+            if (raw_file_counter <= animate_length/3.):
+                #--- Render time evolution
+                bpy.data.scenes["Scene"].frame_start = i
+                bpy.data.scenes["Scene"].frame_end = i+frame_count
+                #print(filepath)
+                #print('hrmpf')
+                bpy.data.textures["dark_matter"].voxel_data.filepath = filepath
+
+                #--- Start animating ---#
+                #bpy.ops.render.render(animation=True)
+                i = i+frame_count+1
+                #print(raw_file_counter)
+                raw_file_counter += 1
 
 #for fileName in file_list[:int(len(file_list)/3.)]:
 #    print('im in a loop')
