@@ -51,7 +51,7 @@ for subdir, dir, files in os.walk(files[0]):
                 bpy.data.scenes["Scene"].frame_end = int(fade_end)
                 bpy.data.textures["dark_matter"].voxel_data.filepath = filepath
 
-                #bpy.ops.render.render(animation=True)
+                bpy.ops.render.render(animation=True)
                 bpy.data.materials['Material'].texture_slots[1].emission_color_factor -= emission_change
                 #print('emission color: {:}'.format(bpy.data.materials['Material'].texture_slots[1].emission_color_factor))
                 #bpy.ops.render.render(animation=True)
