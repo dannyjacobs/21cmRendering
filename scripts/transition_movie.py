@@ -55,12 +55,11 @@ for subdir, dir, files in os.walk(files[0]):
                 print("rendered frame: {:}".format(fade_begin))
                 bpy.data.materials['Material'].texture_slots[1].emission_color_factor -= emission_change
                 #print('emission color: {:}'.format(bpy.data.materials['Material'].texture_slots[1].emission_color_factor))
-                #bpy.ops.render.render(animation=True)
+                bpy.ops.render.render(animation=True)
 
                 #print('rendered frame: {:}, file: {:}'.format(fade_begin, file))
                 fade_begin += 1
                 i = fade_end
-
 
             bpy.data.materials['Material'].use_textures[1] = False
             animate_length = (2/3)*animate_length
@@ -74,7 +73,7 @@ for subdir, dir, files in os.walk(files[0]):
 
                 #--- Start animating ---#
                 print("rendered frame: {:}".format(i))
-                #bpy.ops.render.render(animation=True)
+                bpy.ops.render.render(animation=True)
                 i = i+frame_count+1
                 print("increase frame: {:}".format(i))
                 #print(raw_file_counter)
