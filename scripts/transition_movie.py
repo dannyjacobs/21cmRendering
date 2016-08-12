@@ -52,7 +52,7 @@ for subdir, dir, files in os.walk(files[0]):
                 bpy.data.textures["dark_matter"].voxel_data.filepath = filepath
 
                 #bpy.ops.render.render(animation=True)
-                print("rendered frame: {:}".format(fade_begin))
+                #print("rendered frame: {:}".format(fade_begin))
                 bpy.data.materials['Material'].texture_slots[1].emission_color_factor -= emission_change
                 #print('emission color: {:}'.format(bpy.data.materials['Material'].texture_slots[1].emission_color_factor))
                 bpy.ops.render.render(animation=True)
@@ -62,7 +62,7 @@ for subdir, dir, files in os.walk(files[0]):
                 i = fade_end
 
             bpy.data.materials['Material'].use_textures[1] = False
-            animate_length = (2/3)*animate_length
+            #animate_length = (2/3)*animate_length
             if (raw_file_counter <= animate_length):
                 #--- Render time evolution
                 bpy.data.scenes["Scene"].frame_start = i
@@ -72,10 +72,10 @@ for subdir, dir, files in os.walk(files[0]):
                 bpy.data.textures["dark_matter"].voxel_data.filepath = filepath
 
                 #--- Start animating ---#
-                print("rendered frame: {:}".format(i))
+                #print("rendered frame: {:}, file: {:}".format(i, file))
                 bpy.ops.render.render(animation=True)
                 i = i+frame_count+1
-                print("increase frame: {:}".format(i))
+                #print("increase frame: {:}".format(i))
                 #print(raw_file_counter)
                 raw_file_counter += 1
         skip_count += 1
