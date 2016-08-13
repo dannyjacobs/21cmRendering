@@ -17,7 +17,7 @@ frame_count = 0
 
 #initialize counter
 i=0
-fade_begin = 0. #frame to start animation on
+fade_begin = 295. #frame to start animation on
 fade_end = 300. #frame to stop fade on
 raw_file_counter = 0
 skip_count = 0
@@ -48,16 +48,17 @@ for subdir, dir, files in os.walk(files[0]):
             #--- Render beginning fade between dark matter and hydrogen textures
             while (fade_begin < fade_end):
                 bpy.data.scenes["Scene"].frame_start = int(fade_begin)
-                bpy.data.scenes["Scene"].frame_end = int(fade_end)
+                bpy.data.scenes["Scene"].frame_end = int(fade_begin)
                 bpy.data.textures["dark_matter"].voxel_data.filepath = filepath
+                bpy.data.textures["hydrogen"].voxel_data.filepath = filepath
 
                 #bpy.ops.render.render(animation=True)
                 #print("rendered frame: {:}".format(fade_begin))
                 bpy.data.materials['Material'].texture_slots[1].emission_color_factor -= emission_change
-                #print('emission color: {:}'.format(bpy.data.materials['Material'].texture_slots[1].emission_color_factor))
+                print('emission color: {:}'.format(bpy.data.materials['Material'].texture_slots[1].emission_color_factor))
                 bpy.ops.render.render(animation=True)
 
-                #print('rendered frame: {:}, file: {:}'.format(fade_begin, file))
+                print('rendered frame: {:}, file: {:}'.format(fade_begin, file))
                 fade_begin += 1
                 i = fade_end
 
@@ -69,10 +70,10 @@ for subdir, dir, files in os.walk(files[0]):
                 bpy.data.scenes["Scene"].frame_end = i+frame_count
                 #print(filepath)
                 #print('hrmpf')
-                bpy.data.textures["dark_matter"].voxel_data.filepath = filepath
+                bpy.data.textures["hydrogen"].voxel_data.filepath = filepath
 
                 #--- Start animating ---#
-                #print("rendered frame: {:}, file: {:}".format(i, file))
+                print("rendered frame: {:}, file: {:}".format(i, file))
                 bpy.ops.render.render(animation=True)
                 i = i+frame_count+1
                 #print("increase frame: {:}".format(i))
