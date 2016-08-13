@@ -49,7 +49,7 @@ file_list = glob.glob(opts.glob_pat)
 animate_length = len(file_list)
 skip_length = animate_length/3
 
-for filepath in file_list:
+for filepath in sorted(file_list):
     if (skip_count >= skip_length-1):
         #--- Render beginning fade between dark matter and hydrogen textures
         while (fade_begin < fade_end):
