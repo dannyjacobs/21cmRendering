@@ -24,16 +24,27 @@ skip_count = 0
 
 emission_change = 1./(fade_end - fade_begin)
 
-#print('the last argument is:'+str(sys.argv[-1:]))
-files = sys.argv[-1:]
-#print(type(files))
-#file_list = os.listdir(files[0])
+#print('the last argument is:'+str(sys.argv))
+files = sys.argv[5:]
+#print(type(files[]))
+#file_list = os.listdir(files)
 
 #--- make sure proper textures are displayed
 bpy.data.materials['Material'].use_textures[0] = True
 bpy.data.materials['Material'].use_textures[1] = True
 
-for subdir, dir, files in os.walk(files[0]):
+#print(files)
+#subdir = files
+#print(glob.glob(files))
+
+for file in files:
+	print(len(files))
+	print(file)
+
+
+sys.exit()
+
+for subdir, dir, files in os.walk(files):
     for file in files:
         filepath = subdir + os.sep + file
 
