@@ -60,6 +60,7 @@ for filepath in sorted(file_list):
             bpy.data.scenes["Scene"].frame_start = int(fade_begin)
             bpy.data.scenes["Scene"].frame_end = int(fade_begin)
             bpy.data.materials['Material'].texture_slots[1].emission_color_factor -= emission_change
+            bpy.data.materials['Material'].texture_slots[1].emission_factor -= emission_change
             #print('emission color: {:}'.format(bpy.data.materials['Material'].texture_slots[1].emission_color_factor))
             bpy.ops.render.render(animation=True)
             print('rendered frame: {:}, file: {:}'.format(fade_begin, filepath))
@@ -76,7 +77,7 @@ for filepath in sorted(file_list):
 
             #--- Start animating ---#
             print("rendered frame: {:}, file: {:}".format(i, filepath))
-            bpy.ops.render.render(animation=True)
+            #bpy.ops.render.render(animation=True)
             i = i+frame_count+1
             raw_file_counter += 1
     else:
