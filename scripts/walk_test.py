@@ -10,9 +10,20 @@ import bpy
 import sys
 import os
 import glob
+import optparse
 
 #number of frames per timestep
 frame_count = 0
+
+###
+o = optparse.OptionParser()
+o.set_description('Suck a bag of dicks')
+
+o.add_option('--glob_pat',type=str,
+    help='location of .raw files for glob')
+
+opts,args = o.parse_args(sys.argv[5:])
+###
 
 
 #initialize counter
@@ -24,7 +35,7 @@ skip_count = 0
 
 emission_change = 1./(fade_end - fade_begin)
 
-#print('the last argument is:'+str(sys.argv))
+print('the last argument is:'+str(sys.argv))
 files = sys.argv[5:]
 #print(type(files[]))
 #file_list = os.listdir(files)
@@ -35,11 +46,16 @@ bpy.data.materials['Material'].use_textures[1] = True
 
 #print(files)
 #subdir = files
-#print(glob.glob(files))
+#print(glob.glob(files[0]))
 
-for file in files:
-	print(len(files))
-	print(file)
+glob_test = glob.glob(opts.glob_pat)
+
+for file in glob_test:
+    print("the filename is: {:}".format(file))
+
+#for file in files:
+	#print(len(files))
+#	print(file)
 
 
 sys.exit()
