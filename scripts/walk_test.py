@@ -50,7 +50,7 @@ bpy.data.materials['Material'].use_textures[1] = True
 
 glob_test = glob.glob(opts.glob_pat)
 
-for file in glob_test:
+for file in sorted(glob_test):
     print("the filename is: {:}".format(file))
 
 #for file in files:
