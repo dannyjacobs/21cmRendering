@@ -48,65 +48,58 @@ bpy.data.materials['Material'].use_textures[1] = True
 #subdir = files
 #print(glob.glob(files[0]))
 
-glob_test = glob.glob(opts.glob_pat)
-
-for file in sorted(glob_test):
-    print("the filename is: {:}".format(file))
-
-#for file in files:
-	#print(len(files))
-#	print(file)
+file_list = glob.glob(opts.glob_pat)
 
 
-sys.exit()
+#for subdir, dir, files in os.walk(files):
 
-for subdir, dir, files in os.walk(files):
-    for file in files:
-        filepath = subdir + os.sep + file
+for filepath in file_list:
 
-        animate_length = len(glob.glob(subdir+os.sep+'*'))
-        skip_length = animate_length/3
+    print(filepath)
 
-        #print('animate length is {:}'.format(animate_length))
+    animate_length = len(file_list)
+    skip_length = animate_length/3
 
-        if filepath.endswith(".raw") and (skip_count >= skip_length-1):
-            #print('im in a loop')
-            #print(file)
-            #--- Render beginning fade between dark matter and hydrogen textures
-            while (fade_begin < fade_end):
-                bpy.data.scenes["Scene"].frame_start = int(fade_begin)
-                bpy.data.scenes["Scene"].frame_end = int(fade_begin)
-                bpy.data.textures["dark_matter"].voxel_data.filepath = filepath
-                bpy.data.textures["hydrogen"].voxel_data.filepath = filepath
+    #print('animate length is {:}'.format(animate_length))
 
-                #bpy.ops.render.render(animation=True)
-                #print("rendered frame: {:}".format(fade_begin))
-                bpy.data.materials['Material'].texture_slots[1].emission_color_factor -= emission_change
-                #print('emission color: {:}'.format(bpy.data.materials['Material'].texture_slots[1].emission_color_factor))
-                #bpy.ops.render.render(animation=True)
+    if (skip_count >= skip_length-1):
+        #print('im in a loop')
+        #print(file)
+        #--- Render beginning fade between dark matter and hydrogen textures
+        while (fade_begin < fade_end):
+            bpy.data.scenes["Scene"].frame_start = int(fade_begin)
+            bpy.data.scenes["Scene"].frame_end = int(fade_begin)
+            bpy.data.textures["dark_matter"].voxel_data.filepath = filepath
+            bpy.data.textures["hydrogen"].voxel_data.filepath = filepath
 
-                print('rendered frame: {:}, file: {:}'.format(fade_begin, file))
-                fade_begin += 1
-                i = fade_end
+            #bpy.ops.render.render(animation=True)
+            #print("rendered frame: {:}".format(fade_begin))
+            bpy.data.materials['Material'].texture_slots[1].emission_color_factor -= emission_change
+            #print('emission color: {:}'.format(bpy.data.materials['Material'].texture_slots[1].emission_color_factor))
+            #bpy.ops.render.render(animation=True)
 
-            bpy.data.materials['Material'].use_textures[1] = False
-            #animate_length = (2/3)*animate_length
-            if (raw_file_counter <= animate_length):
-                #--- Render time evolution
-                bpy.data.scenes["Scene"].frame_start = i
-                bpy.data.scenes["Scene"].frame_end = i+frame_count
-                #print(filepath)
-                #print('hrmpf')
-                bpy.data.textures["hydrogen"].voxel_data.filepath = filepath
+            print('rendered frame: {:}, file: {:}'.format(fade_begin, filepath))
+            fade_begin += 1
+            i = fade_end
 
-                #--- Start animating ---#
-                print("rendered frame: {:}, file: {:}".format(i, file))
-                #bpy.ops.render.render(animation=True)
-                i = i+frame_count+1
-                #print("increase frame: {:}".format(i))
-                #print(raw_file_counter)
-                raw_file_counter += 1
-        skip_count += 1
+        bpy.data.materials['Material'].use_textures[1] = False
+        #animate_length = (2/3)*animate_length
+        if (raw_file_counter <= animate_length):
+            #--- Render time evolution
+            bpy.data.scenes["Scene"].frame_start = i
+            bpy.data.scenes["Scene"].frame_end = i+frame_count
+            #print(filepath)
+            #print('hrmpf')
+            bpy.data.textures["hydrogen"].voxel_data.filepath = filepath
+
+            #--- Start animating ---#
+            print("rendered frame: {:}, file: {:}".format(i, filepath))
+            #bpy.ops.render.render(animation=True)
+            i = i+frame_count+1
+            #print("increase frame: {:}".format(i))
+            #print(raw_file_counter)
+            raw_file_counter += 1
+    skip_count += 1
 
 
 
