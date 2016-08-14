@@ -17,7 +17,7 @@ frame_count = 0
 
 #initialize counter
 i=0
-fade_begin = 295. #frame to start animation on
+fade_begin = 0. #frame to start animation on
 fade_end = 300. #frame to stop fade on
 raw_file_counter = 0
 skip_count = 0
