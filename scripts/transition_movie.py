@@ -77,8 +77,8 @@ for filepath in sorted(file_list):
             bpy.data.textures["hydrogen"].voxel_data.filepath = filepath
 
             #--- Start animating ---#
-            print("rendered frame: {:}, file: {:}".format(i, filepath))
-            #bpy.ops.render.render(animation=True)
+            #print("rendered frame: {:}, file: {:}".format(i, filepath))
+            bpy.ops.render.render(animation=True)
             i = i+frame_count+1
             raw_file_counter += 1
     else:
