@@ -31,8 +31,8 @@ skip_length = 0
 
 #initialize counters
 rot_begin = 0. #frame to start animation on
-rot_end = 705. #frame to stop fade on
-animation_end_frame = 705
+rot_end = 141. #frame to stop fade on
+animation_end_frame = 141
 i = 0
 raw_file_counter = 0
 
