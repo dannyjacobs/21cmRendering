@@ -14,6 +14,6 @@ for filename in sys.argv[1:]:
 
     #write it back out
     outfile = os.path.basename(filename)+'.raw'
-    F = open(outfile)
+    F = open(outfile,'rw')
     D.astype(np.uint8).tofile(outfile)
     print outfile
