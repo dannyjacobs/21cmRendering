@@ -39,15 +39,15 @@ raw_file_counter = 0
 #print('the last argument is:'+str(sys.argv))
 
 #--- make sure proper textures are displayed
-bpy.data.materials['Material'].use_textures[1] = True
-bpy.data.materials['Material'].use_textures[0] = False
+bpy.data.materials['Material'].use_textures[5] = True
+#bpy.data.materials['Material'].use_textures[0] = False
 
 for filepath in sorted(file_list, reverse=True):
     if (raw_file_counter < animate_length-1):
         #--- Render time evolution
         bpy.data.scenes["Scene"].frame_start = i
         bpy.data.scenes["Scene"].frame_end = i+frame_count
-        bpy.data.textures["2827_tweaked"].voxel_data.filepath = filepath
+        bpy.data.textures["2614"].voxel_data.filepath = filepath
 
         #--- Start animating ---#
         #print("rendered frame (a): {:}, file: {:}".format(i, filepath))
