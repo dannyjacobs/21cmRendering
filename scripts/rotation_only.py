@@ -39,7 +39,7 @@ raw_file_counter = 0
 #print('the last argument is:'+str(sys.argv))
 
 #--- make sure proper textures are displayed
-bpy.data.materials['Material'].use_textures[0] = True
+bpy.data.materials['Material'].use_textures[5] = True
 bpy.data.materials['Material'].use_textures[1] = False
 
 for filepath in sorted(file_list, reverse=True):
@@ -47,7 +47,7 @@ for filepath in sorted(file_list, reverse=True):
         #--- Render time evolution
         bpy.data.scenes["Scene"].frame_start = i
         bpy.data.scenes["Scene"].frame_end = i+frame_count
-        bpy.data.textures["hydrogen"].voxel_data.filepath = filepath
+        bpy.data.textures["2614"].voxel_data.filepath = filepath
 
         #--- Start animating ---#
         #print("rendered frame (a): {:}, file: {:}".format(i, filepath))
