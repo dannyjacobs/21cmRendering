@@ -31,15 +31,15 @@ skip_length = 0
 
 #initialize counters
 rot_begin = 0. #frame to start animation on
-rot_end = 141. #frame to stop fade on
-animation_end_frame = 141
+rot_end = 1000. #frame to stop fade on
+animation_end_frame = 1000
 i = 0
 raw_file_counter = 0
 
 #print('the last argument is:'+str(sys.argv))
 
 #--- make sure proper textures are displayed
-bpy.data.materials['Material'].use_textures[5] = True
+bpy.data.materials['Material'].use_textures[2] = True
 #bpy.data.materials['Material'].use_textures[0] = False
 
 for filepath in sorted(file_list, reverse=True):
@@ -47,7 +47,7 @@ for filepath in sorted(file_list, reverse=True):
         #--- Render time evolution
         bpy.data.scenes["Scene"].frame_start = i
         bpy.data.scenes["Scene"].frame_end = i+frame_count
-        bpy.data.textures["2614"].voxel_data.filepath = filepath
+        bpy.data.textures["hydrogen_pink"].voxel_data.filepath = filepath
 
         #--- Start animating ---#
         #print("rendered frame (a): {:}, file: {:}".format(i, filepath))
