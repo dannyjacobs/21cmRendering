@@ -57,7 +57,7 @@ for filepath in sorted(file_list, reverse=True):
         #i = i+frame_count+1
         #raw_file_counter += 1
     else:
-        if (raw_file_counter < animate_length):
+        if (raw_file_counter < animate_length-1):
             bpy.data.scenes["Scene"].frame_start = i
             bpy.data.scenes["Scene"].frame_end = i+frame_count+1
             bpy.data.textures["pinkish"].voxel_data.filepath = filepath
