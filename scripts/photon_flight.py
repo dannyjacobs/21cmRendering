@@ -31,16 +31,17 @@ skip_length = 0
 files = sys.argv[5:]
 
 #initialize counters
-intro = True
-i = 90
-animation_end_frame = 945
+intro = False
+i = 0
+animation_end_frame = 1300
 raw_file_counter = 0
 
 #print('the last argument is:'+str(sys.argv))
 
 #--- make sure proper textures are displayed
-bpy.data.materials['Material'].use_textures[0] = True
+bpy.data.materials['Material'].use_textures[0] = False
 bpy.data.materials['Material'].use_textures[1] = False
+bpy.data.materials['Material'].use_textures[2] = True
 
 for filepath in sorted(file_list):
     if intro:
@@ -51,7 +52,7 @@ for filepath in sorted(file_list):
 
         #--- Start animating ---#
         print("rendered frame (a): {:}, file: {:}".format(i, filepath))
-        bpy.ops.render.render(animation=True)
+        #bpy.ops.render.render(animation=True)
         intro = False
         #i = i+frame_count+1
         #raw_file_counter += 1
@@ -59,14 +60,14 @@ for filepath in sorted(file_list):
         if (raw_file_counter < animate_length-2):
             bpy.data.scenes["Scene"].frame_start = i
             bpy.data.scenes["Scene"].frame_end = i+frame_count+1
-            bpy.data.textures["hydrogen"].voxel_data.filepath = filepath
+            bpy.data.textures["pinkish"].voxel_data.filepath = filepath
             print('rendered frame (b): {:}, file: {:}'.format(i, filepath))
-            bpy.ops.render.render(animation=True)
+            #bpy.ops.render.render(animation=True)
             i = i+frame_count+1
             raw_file_counter += 1
         else:
             bpy.data.scenes["Scene"].frame_start = i
             bpy.data.scenes["Scene"].frame_end = animation_end_frame
-            bpy.data.textures["hydrogen"].voxel_data.filepath = filepath
+            bpy.data.textures["pinkish"].voxel_data.filepath = filepath
             print('rendered frame (c): {:}, file: {:}'.format(i, filepath))
-            bpy.ops.render.render(animation=True)
+            #bpy.ops.render.render(animation=True)
