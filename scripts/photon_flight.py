@@ -43,7 +43,7 @@ bpy.data.materials['Material'].use_textures[0] = False
 bpy.data.materials['Material'].use_textures[1] = False
 bpy.data.materials['Material'].use_textures[2] = True
 
-for filepath in sorted(file_list):
+for filepath in sorted(file_list, reverse=True):
     if intro:
         #--- Render time evolution
         bpy.data.scenes["Scene"].frame_start = 0
@@ -57,7 +57,7 @@ for filepath in sorted(file_list):
         #i = i+frame_count+1
         #raw_file_counter += 1
     else:
-        if (raw_file_counter < animate_length-2):
+        if (raw_file_counter < animate_length):
             bpy.data.scenes["Scene"].frame_start = i
             bpy.data.scenes["Scene"].frame_end = i+frame_count+1
             bpy.data.textures["pinkish"].voxel_data.filepath = filepath
