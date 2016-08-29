@@ -48,7 +48,7 @@ for filepath in sorted(file_list, reverse=True):
         #--- Render time evolution
         bpy.data.scenes["Scene"].frame_start = 0
         bpy.data.scenes["Scene"].frame_end = i-1
-        bpy.data.textures["hydrogen"].voxel_data.filepath = filepath
+        bpy.data.textures["hydrogen_pink"].voxel_data.filepath = filepath
 
         #--- Start animating ---#
         print("rendered frame (a): {:}, file: {:}".format(i, filepath))
@@ -60,7 +60,7 @@ for filepath in sorted(file_list, reverse=True):
         if (raw_file_counter < animate_length-1):
             bpy.data.scenes["Scene"].frame_start = i
             bpy.data.scenes["Scene"].frame_end = i+frame_count+1
-            bpy.data.textures["pinkish"].voxel_data.filepath = filepath
+            bpy.data.textures["hydrogen_pink"].voxel_data.filepath = filepath
             print('rendered frame (b): {:}, file: {:}'.format(i, filepath))
             bpy.ops.render.render(animation=True)
             i = i+frame_count+1
@@ -68,6 +68,6 @@ for filepath in sorted(file_list, reverse=True):
         else:
             bpy.data.scenes["Scene"].frame_start = i
             bpy.data.scenes["Scene"].frame_end = animation_end_frame
-            bpy.data.textures["pinkish"].voxel_data.filepath = filepath
+            bpy.data.textures["hydrogen_pink"].voxel_data.filepath = filepath
             print('rendered frame (c): {:}, file: {:}'.format(i, filepath))
             bpy.ops.render.render(animation=True)
