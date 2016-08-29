@@ -39,7 +39,7 @@ raw_file_counter = 0
 #print('the last argument is:'+str(sys.argv))
 
 #--- make sure proper textures are displayed
-bpy.data.materials['Material'].use_textures[2] = True
+#bpy.data.materials['Material'].use_textures[2] = True
 #bpy.data.materials['Material'].use_textures[0] = False
 
 for filepath in sorted(file_list, reverse=True):
