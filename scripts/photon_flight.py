@@ -26,6 +26,8 @@ opts,args = o.parse_args(sys.argv[5:])
 ###
 
 file_list = glob.glob(opts.glob_pat)
+#trim the list
+file_list = sorted(file_list[0:-100])
 animate_length = len(file_list)
 skip_length = 0
 files = sys.argv[5:]
@@ -57,7 +59,7 @@ for filepath in sorted(file_list, reverse=True):
         #i = i+frame_count+1
         #raw_file_counter += 1
     else:
-        if (raw_file_counter < animate_length-1):
+        if (raw_file_counter < animate_length-101): #trim the last 100 files off
             bpy.data.scenes["Scene"].frame_start = i
             bpy.data.scenes["Scene"].frame_end = i+frame_count+1
             bpy.data.textures["hydrogen_pink"].voxel_data.filepath = filepath
@@ -71,3 +73,5 @@ for filepath in sorted(file_list, reverse=True):
             bpy.data.textures["hydrogen_pink"].voxel_data.filepath = filepath
             print('rendered frame (c): {:}, file: {:}'.format(i, filepath))
             bpy.ops.render.render(animation=True)
+            #trim the last 100 files off
+            raw_file_counter = animate_length
