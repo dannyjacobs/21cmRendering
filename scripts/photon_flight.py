@@ -26,8 +26,6 @@ opts,args = o.parse_args(sys.argv[5:])
 ###
 
 file_list = glob.glob(opts.glob_pat)
-#trim the list
-file_list = sorted(file_list[0:-100])
 animate_length = len(file_list)
 skip_length = 0
 files = sys.argv[5:]
@@ -74,4 +72,4 @@ for filepath in sorted(file_list, reverse=True):
             print('rendered frame (c): {:}, file: {:}'.format(i, filepath))
             bpy.ops.render.render(animation=True)
             #trim the last 100 files off
-            raw_file_counter = animate_length
+            sys.exit()
