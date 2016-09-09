@@ -44,7 +44,7 @@ bpy.data.materials['Material'].use_textures[0] = True
 bpy.data.materials['Material'].use_textures[1] = False
 bpy.data.materials['Material'].use_textures[2] = False
 bpy.data.materials['Material'].volume.emission = 0.5
-bpy.data.scenes["Scene"].render.filepath = "//..\\output\\galaxy_rotation_pink\\"
+bpy.data.scenes["Scene"].render.filepath = "//..\\output\\galaxy_rotation_starspink\\"
 
 for filepath in sorted(file_list, reverse=True):
     if intro:
