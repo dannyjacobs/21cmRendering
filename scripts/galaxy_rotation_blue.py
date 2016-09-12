@@ -44,7 +44,7 @@ bpy.data.materials['Material'].use_textures[0] = False
 bpy.data.materials['Material'].use_textures[1] = True
 bpy.data.materials['Material'].use_textures[2] = False
 bpy.data.materials['Material'].volume.emission = 2.0
-bpy.data.scenes["Scene"].render.filepath = "//..\\output\\gal_rot_stars_blue\\"
+bpy.data.scenes["Scene"].render.filepath = "//..\\output\\gal_rot_highres_stars_blue\\"
 
 for filepath in sorted(file_list, reverse=True):
     if intro:
